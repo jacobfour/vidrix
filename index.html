@@ -79,6 +79,13 @@
             background: #ccc;
         }
 
+        .thumb-img {
++           width: 100%;
++           height: 170px;
++           object-fit: cover;
++           border-radius: 8px;
++       }
+
         .duration {
             position: absolute;
             bottom: 45px;
@@ -148,67 +155,36 @@
 
         <div class="video-grid">
 
-            <div class="video" onclick="watchVideo('video1.mp4','Video 1')">
-                <video class="thumb-video" src="video1.mp4"></video>
-                <canvas class="thumb-canvas"></canvas>
-                <div class="duration">0:00</div>
-                <div class="video-title">Video 1</div>
-            </div>
-
-            <div class="video" onclick="watchVideo('video2.mp4','Roblox fire')">
-                <video class="thumb-video" src="video2.mp4"></video>
-                <canvas class="thumb-canvas"></canvas>
+            <!-- https://youtu.be/suzJaNyXaNc -->
+            <div class="video" data-youtube="suzJaNyXaNc" onclick="watchVideo('youtube:suzJaNyXaNc','Roblox fire')">
+                <div class="thumb-img" src="https://img.youtube.com/vi/suzJaNyXaNc/hqdefault.jpg"></div>
+                <canvas class="thumb-canvas" style="display: none"></canvas>
                 <div class="duration">0:00</div>
                 <div class="video-title">Roblox fire</div>
             </div>
 
-            <div class="video" onclick="watchVideo('video3.mp4','Memes')">
-                <video class="thumb-video" src="video3.mp4"></video>
-                <canvas class="thumb-canvas"></canvas>
+            <!-- https://youtu.be/wEX-ta1WAyY -->
+            <div class="video" data-youtube="wEX-ta1WAyY" onclick="watchVideo('youtube:wEX-ta1WAyY','Memes')">
+                <div class="thumb-img" src="https://img.youtube.com/vi/wEX-ta1WAyY/hqdefault.jpg"></div>
+                <canvas class="thumb-canvas" style="display: none"></canvas>
                 <div class="duration">0:00</div>
                 <div class="video-title">Memes</div>
             </div>
 
-            <div class="video" onclick="watchVideo('video4.mp4','Minecraft Diamond house')">
-                <video class="thumb-video" src="video4.mp4"></video>
-                <canvas class="thumb-canvas"></canvas>
+            <!-- https://youtu.be/G7dDt6wknGk -->
+            <div class="video" data-youtube="G7dDt6wknGk" onclick="watchVideo('youtube:G7dDt6wknGk','Minecraft Diamond house')">
+                <img class="thumb-img" src="https://img.youtube.com/vi/G7dDt6wknGk/hqdefault.jpg" alt="Minecraft Diamond house">
+                <canvas class="thumb-canvas" style="display: none"></canvas>
                 <div class="duration">0:00</div>
                 <div class="video-title">Minecraft Diamond house</div>
             </div>
 
-            <div class="video" onclick="watchVideo('video5.mp4','Video 5')">
-                <video class="thumb-video" src="video5.mp4"></video>
-                <canvas class="thumb-canvas"></canvas>
-                <div class="duration">0:00</div>
-                <div class="video-title">Video 5</div>
-            </div>
-
-            <div class="video" onclick="watchVideo('video6.mp4','Video 6')">
-                <video class="thumb-video" src="video6.mp4"></video>
-                <canvas class="thumb-canvas"></canvas>
-                <div class="duration">0:00</div>
-                <div class="video-title">Video 6</div>
-            </div>
-
-            <div class="video" onclick="watchVideo('video7.mp4','Video 7')">
-                <video class="thumb-video" src="video7.mp4"></video>
-                <canvas class="thumb-canvas"></canvas>
-                <div class="duration">0:00</div>
-                <div class="video-title">Video 7</div>
-            </div>
-
-            <div class="video" onclick="watchVideo('video8.mp4','Video 8')">
-                <video class="thumb-video" src="video8.mp4"></video>
-                <canvas class="thumb-canvas"></canvas>
-                <div class="duration">0:00</div>
-                <div class="video-title">Video 8</div>
-            </div>
 
         </div>
     </div>
 
     <div id="watchPage">
-        <video id="player" controls></video>
+        <div id="player"></div>
         <h2 id="videoTitle"></h2>
 
         <div class="video-actions">
@@ -227,7 +203,15 @@
         function watchVideo(file, title) {
             document.getElementById("home").style.display = "none"
             document.getElementById("watchPage").style.display = "block"
-            document.getElementById("player").src = file
+            const player = document.getElementById("player")
+            // youtube embed
+            if (file.startsWith("youtube:")) {
+                const id = file.split(":")[1]
+                player.innerHTML = `<iframe width="100%" height="500" src="https://www.youtube.com/embed/${id}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+            } else {
+                player.innerHTML = `<video controls src="${file}" style="width:100%;max-width:900px;border-radius:10px"></video>`
+            }
+            
             document.getElementById("videoTitle").innerText = title
             likes = 0
             document.getElementById("likeCount").innerText = likes
