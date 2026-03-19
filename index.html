@@ -218,9 +218,30 @@
         }
 
         function goHome() {
+            // stop and unload any media in the player (video or iframe)
+            const player = document.getElementById("player")
+            const videoEl = player.querySelector("video")
+            const iframeEl = player.querySelector("iframe")
+
+            if (videoEl) {
+                try { videoEl.pause() } catch (e) {}
+                try { videoEl.currentTime = 0 } catch (e) {}
+                // remove source and reload to free resources
+                videoEl.removeAttribute("src")
+                try { videoEl.load() } catch (e) {}
+            }
+
+            if (iframeEl) {
+                // stop iframe playback by removing its src
+                try { iframeEl.src = "" } catch (e) {}
+            }
+
+            // clear player DOM so nothing continues in background
+            player.innerHTML = ""
+
             document.getElementById("watchPage").style.display = "none"
             document.getElementById("home").style.display = "block"
-        }
+         }
 
         function likeVideo() {
             likes++
