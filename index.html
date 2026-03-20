@@ -155,24 +155,24 @@
 
         <div class="video-grid">
 
-            <!-- https://youtu.be/suzJaNyXaNc -->
-            <div class="video" data-youtube="suzJaNyXaNc" onclick="watchVideo('youtube:suzJaNyXaNc','Roblox fire')">
+            <!-- https://vidrix-content.tor1.cdn.digitaloceanspaces.com/video2.mp4 -->
+            <div class="video" onclick="watchVideo('https://vidrix-content.tor1.cdn.digitaloceanspaces.com/video2.mp4','Roblox fire')">
                 <img class="thumb-img" src="https://img.youtube.com/vi/suzJaNyXaNc/hqdefault.jpg" alt="Roblox fire">
                 <canvas class="thumb-canvas" style="display: none"></canvas>
                 <div class="duration">0:00</div>
                 <div class="video-title">Roblox fire</div>
             </div>
 
-            <!-- https://youtu.be/wEX-ta1WAyY -->
-            <div class="video" data-youtube="wEX-ta1WAyY" onclick="watchVideo('youtube:wEX-ta1WAyY','Memes')">
+            <!-- https://vidrix-content.tor1.cdn.digitaloceanspaces.com/video3.mp4 -->
+            <div class="video" onclick="watchVideo('https://vidrix-content.tor1.cdn.digitaloceanspaces.com/video3.mp4','Memes')">
                 <img class="thumb-img" src="https://img.youtube.com/vi/wEX-ta1WAyY/hqdefault.jpg" alt="Memes">
                 <canvas class="thumb-canvas" style="display: none"></canvas>
                 <div class="duration">0:00</div>
                 <div class="video-title">Memes</div>
             </div>
 
-            <!-- https://youtu.be/G7dDt6wknGk -->
-            <div class="video" data-youtube="G7dDt6wknGk" onclick="watchVideo('youtube:G7dDt6wknGk','Minecraft Diamond house')">
+            <!-- https://vidrix-content.tor1.cdn.digitaloceanspaces.com/video4.mp4 -->
+            <div class="video" onclick="watchVideo('https://vidrix-content.tor1.cdn.digitaloceanspaces.com/video4.mp4','Minecraft Diamond house')">
                 <img class="thumb-img" src="https://img.youtube.com/vi/G7dDt6wknGk/hqdefault.jpg" alt="Minecraft Diamond house">
                 <canvas class="thumb-canvas" style="display: none"></canvas>
                 <div class="duration">0:00</div>
@@ -267,7 +267,7 @@
 
             document.querySelectorAll(".video").forEach(div => {
 
-                let video = div.querySelector(".thumb-video")
+                let video = div.querySelector(".video")
                 let canvas = div.querySelector(".thumb-canvas")
                 let durationText = div.querySelector(".duration")
                 let ctx = canvas.getContext("2d")
